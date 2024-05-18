@@ -9,7 +9,7 @@ const AppNavbar = () => {
           <Navbar.Brand href="/home">Biblioteca Online</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link href="/home">Home</Nav.Link>
-            <Nav.Link href="/reservedbooks">Features</Nav.Link>
+            <Nav.Link href="/reservedbooks">Reserved Books</Nav.Link>
             <Nav.Link href="#pricing">Pricing</Nav.Link>
           </Nav>
         </Container>
