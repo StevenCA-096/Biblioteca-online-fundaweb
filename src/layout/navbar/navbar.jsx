@@ -8,9 +8,9 @@ const AppNavbar = () => {
         <Container>
           <Navbar.Brand href="/home">Biblioteca Online</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="/home">Home</Nav.Link>
-            <Nav.Link href="/reservedbooks">Reserved Books</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
+            <Nav.Link href="/home">Inicio</Nav.Link>
+            <Nav.Link href="/reservedbooks">Available Books</Nav.Link>
+            <Nav.Link href="#pricing">Prestamos</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
