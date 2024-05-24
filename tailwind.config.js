@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
 const { nextui } = require("@nextui-org/react");
+const withMT = require("@material-tailwind/react/utils/withMT");
 
 export default {
   content: [
@@ -16,3 +17,11 @@ export default {
 
 }
 
+ 
+module.exports = withMT({
+  content: [],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+});

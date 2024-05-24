@@ -4,13 +4,12 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 const AppNavbar = () => {
   return (
-    <Navbar bg="light" data-bs-theme="light">
-        <Container>
+    <Navbar bg="" data-bs-theme="light" className='border mb-3 navbar-container'>
+        <Container className='font-monospace'>
           <Navbar.Brand href="/home">Biblioteca Online</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="/home">Inicio</Nav.Link>
-            <Nav.Link href="/reservedbooks">Available Books</Nav.Link>
-            <Nav.Link href="#pricing">Prestamos</Nav.Link>
+            <Nav.Link href="/home" className='text-dark'>Inicio</Nav.Link>
+            <Nav.Link href="/reservedBooks" className='text-dark'>Prestamos</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

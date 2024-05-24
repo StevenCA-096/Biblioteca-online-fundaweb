@@ -1,18 +1,20 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Container, Row, Col } from 'react-bootstrap';
-import { Card, CardHeader, CardBody, Image } from "@nextui-org/react";
+import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Spinner } from '@material-tailwind/react';
 
 const ReservedBooks = () => {
   const [books, setBooks] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchBooks = async () => {
       try {
         const searchQuery = 'the lord of the rings';
         const url = `https://openlibrary.org/search.json?q=${encodeURIComponent(searchQuery)}`;
-        const response = await axios.get(url);
-        setBooks(response.data.docs);
+        const response = await axios.get(url)
+        setBooks(response.data.docs.slice(0, 2));
+        setIsLoading(false)
       } catch (error) {
         console.error('Error fetching data from Open Library:', error);
       }
@@ -23,6 +25,17 @@ const ReservedBooks = () => {
 
   return (
     <Container style={{ display: 'grid', alignItems: 'center' }}>
+      
+      <Row>
+        <Col>
+          <h1 className='font-monospace text-center text-decoration-underline my-2'>Mis prestamos</h1>
+        </Col>
+      </Row>
+
+      {
+        isLoading ? (<Spinner className='text-center'/>) : (null)
+      }
+
       <Row>
         {books.map((book, index) => {
           const title = book.title;
@@ -31,21 +44,17 @@ const ReservedBooks = () => {
           const coverUrl = coverId ? `https://covers.openlibrary.org/b/id/${coverId}-L.jpg` : 'No cover available';
 
           return (
-            <Col lg={2} key={index}>
-              <Card className="py-2">
-                <CardHeader className="pb-0 pt-1 px-2 flex-col items-start">
+            <Col lg={4} key={index} className='py-2 px-3'>
+              <Card className="py-3 px-2 shadow app-container">
+                <Card.Img className='img-fluid' src={coverUrl} style={{ width: 'inherit', height: '350px' }} />
+                <Card.Title className="pb-0 pt-1 px-2 flex-col items-start">
                   <p className="text-tiny uppercase font-bold">Autor</p>
                   <small className="text-default-500">{author}</small>
                   <h4 className="font-bold text-large">{title}</h4>
-                </CardHeader>
-                <CardBody className="overflow-visible py-0">
-                  <Image
-                    alt={title}
-                    className="object-cover rounded-xl"
-                    src={coverUrl}
-                    width={220}
-                  />
-                </CardBody>
+                </Card.Title>
+                <Card.Body className="overflow-visible py-0">
+
+                </Card.Body>
               </Card>
             </Col>
           );

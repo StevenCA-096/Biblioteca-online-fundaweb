@@ -4,11 +4,10 @@ import { Container, Row } from 'react-bootstrap'
 import { Card, CardHeader, CardBody, Image } from "@nextui-org/react";
 import Footer from './footer/footer';
 import { Outlet } from 'react-router-dom';
-
 const layout = () => {
   return (
-    <Container fluid className='layoutContainer'>
-      <Row>
+    <Container fluid className='app-container'>
+      <Row >
         <AppNavbar />
       </Row>
 
