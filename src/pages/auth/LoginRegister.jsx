@@ -33,14 +33,14 @@ export const LoginRegister = () => {
                     color="gray"
                     floated={false}
                     shadow={false}
-                    className="m-0 grid place-items-center px-4 py-8 text-center"
+                    className="m-0 grid place-items-center px-4 py-8 text-center card"
                 >
-                    <Typography variant="h3" color="white" className="p-5">
+                    <Typography variant="h3" color="black" className="p-5">
                         Bienvenido!
                     </Typography>
                 </CardHeader>
                 <Tabs id="custom-animation" value="html">
-                    <TabsHeader>
+                    <TabsHeader defaultValue={"login"}>
                         {data.map(({ label, value }) => (
                             <Tab key={value} value={value}>
                                 {label}

@@ -13,7 +13,9 @@ export const router = createBrowserRouter(
   createRoutesFromElements(
     <>
     <Route path="/auth" element={<LoginRegister/>} />
+
     <Route path="/" element={<Layout/>}>
+      <Route path="/" element={<HomePage/>} />
       <Route path="/home" element={<HomePage/>} />
       <Route path="/reservedbooks" element={<ReservedBooks/>} />
 

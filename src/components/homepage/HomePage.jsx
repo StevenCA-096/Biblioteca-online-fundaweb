@@ -3,8 +3,13 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { Spinner } from '@material-tailwind/react';
+import { useQuery } from 'react-query';
+import { getBooks } from '../../services/bookService';
+import { BookReservation } from './book-reservetations/book-reservations';
 
 const HomePage = () => {
+
+  const { data: booksApi, isLoading: booksLoading, isError: booksError } = useQuery('books', getBooks);
 
   const [books, setBooks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -37,6 +42,28 @@ const HomePage = () => {
         isLoading ? (<Spinner />) : (null)
       }
       <Row>
+        {
+          booksApi ? (
+            booksApi.map((book) =>
+              <Col lg={4} key={book.bookName} className='py-2 px-2'>
+                <Card className="py-3 px-2 shadow">
+                  <Card.Img className='img-fluid' src={book.imgUrl} style={{ width: 'inherit', height: '350px' }} />
+
+                  <Card.Body className="overflow-visible py-0">
+                    <Card.Title className="pb-0 pt-1 px-2 flex-col items-start text-center">
+                      <p className="text-tiny uppercase font-bold">{book.authorName}</p>
+                      <small className="text-default-500">{book.category}</small>
+                      <h4 className="font-bold text-large">{book.bookName}</h4>
+                    </Card.Title>
+                  </Card.Body>
+                  <Card.Footer className='bg-transparent'>
+                    <BookReservation />
+                  </Card.Footer>
+                </Card>
+              </Col>
+            )
+          ) : (null)
+        }
         {books.map((book, index) => {
           const title = book.title;
           const author = book.author_name ? book.author_name.join(', ') : 'Unknown author';
