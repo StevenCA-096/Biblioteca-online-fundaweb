@@ -2,24 +2,59 @@
 @tailwind components;
 @tailwind utilities;
 
-.app-container{
-  background: rgb(220,219,237);
-  background: linear-gradient(36deg, rgba(220,219,237,1) 2%, rgba(233,233,246,1) 5%, rgba(255,255,255,1) 23%, rgba(238,239,244,1) 44%, rgba(230,233,244,1) 77%, rgba(255,255,255,1) 98%);
-  
+.app-container {
+  background: rgb(220, 219, 237);
+  background: linear-gradient(
+    36deg,
+    rgba(220, 219, 237, 1) 2%,
+    rgba(233, 233, 246, 1) 5%,
+    rgba(255, 255, 255, 1) 23%,
+    rgba(238, 239, 244, 1) 44%,
+    rgba(230, 233, 244, 1) 77%,
+    rgba(255, 255, 255, 1) 98%
+  );
 }
 
-.footer-container{
-  background: rgb(220,219,237);
-background: linear-gradient(36deg, rgba(220,219,237,1) 2%, rgba(233,233,246,1) 5%, rgba(255,255,255,1) 23%, rgba(238,239,244,1) 44%, rgba(230,233,244,1) 77%, rgba(255,255,255,1) 98%);
+.card{
+  background: rgb(220, 219, 237);
+  background: linear-gradient(
+    36deg,
+    rgba(220, 219, 237, 1) 2%,
+    rgba(233, 233, 246, 1) 5%,
+    rgba(255, 255, 255, 1) 23%,
+    rgba(238, 239, 244, 1) 44%,
+    rgba(230, 233, 244, 1) 77%,
+    rgba(255, 255, 255, 1) 98%
+  );
+}
+
+.footer-container {
+  background: rgb(220, 219, 237);
+  background: linear-gradient(
+    36deg,
+    rgba(220, 219, 237, 1) 2%,
+    rgba(233, 233, 246, 1) 5%,
+    rgba(255, 255, 255, 1) 23%,
+    rgba(238, 239, 244, 1) 44%,
+    rgba(230, 233, 244, 1) 77%,
+    rgba(255, 255, 255, 1) 98%
+  );
 
   position: sticky;
   margin-top: 70vh;
 }
 
-.navbar-container{
-  background: rgb(220,219,237);
-background: linear-gradient(36deg, rgba(220,219,237,1) 2%, rgba(233,233,246,1) 5%, rgba(255,255,255,1) 23%, rgba(238,239,244,1) 44%, rgba(230,233,244,1) 77%, rgba(255,255,255,1) 98%);
-
+.navbar-container {
+  background: rgb(220, 219, 237);
+  background: linear-gradient(
+    36deg,
+    rgba(220, 219, 237, 1) 2%,
+    rgba(233, 233, 246, 1) 5%,
+    rgba(255, 255, 255, 1) 23%,
+    rgba(238, 239, 244, 1) 44%,
+    rgba(230, 233, 244, 1) 77%,
+    rgba(255, 255, 255, 1) 98%
+  );
 }
 
 :root {

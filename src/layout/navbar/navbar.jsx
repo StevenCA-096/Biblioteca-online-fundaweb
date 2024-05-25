@@ -10,6 +10,7 @@ const AppNavbar = () => {
           <Nav className="me-auto">
             <Nav.Link href="/home" className='text-dark'>Inicio</Nav.Link>
             <Nav.Link href="/reservedBooks" className='text-dark'>Prestamos</Nav.Link>
+            <Nav.Link href="/auth" className='text-dark'>Login</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

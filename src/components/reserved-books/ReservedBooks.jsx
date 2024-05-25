@@ -45,7 +45,7 @@ const ReservedBooks = () => {
 
           return (
             <Col lg={4} key={index} className='py-2 px-3'>
-              <Card className="py-3 px-2 shadow app-container">
+              <Card className="py-3 px-2 shadow text-center">
                 <Card.Img className='img-fluid' src={coverUrl} style={{ width: 'inherit', height: '350px' }} />
                 <Card.Title className="pb-0 pt-1 px-2 flex-col items-start">
                   <p className="text-tiny uppercase font-bold">Autor</p>
@@ -53,7 +53,7 @@ const ReservedBooks = () => {
                   <h4 className="font-bold text-large">{title}</h4>
                 </Card.Title>
                 <Card.Body className="overflow-visible py-0">
-
+                  <hr />
                 </Card.Body>
               </Card>
             </Col>
