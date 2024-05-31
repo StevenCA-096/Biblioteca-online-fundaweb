@@ -5,3 +5,9 @@ export const getBooks = async() => {
     console.log(data)
     return data;
 }
+
+export const createBooks = async(newBooks) => {
+    let data = await api.post('books',newBooks).then(data => data.data)
+
+    return data;
+}
