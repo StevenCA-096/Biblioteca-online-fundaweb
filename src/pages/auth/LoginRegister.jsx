@@ -39,8 +39,8 @@ export const LoginRegister = () => {
                         Bienvenido!
                     </Typography>
                 </CardHeader>
-                <Tabs id="custom-animation" value="html">
-                    <TabsHeader defaultValue={"login"}>
+                <Tabs id="custom-animation" value="login">
+                    <TabsHeader>
                         {data.map(({ label, value }) => (
                             <Tab key={value} value={value}>
                                 {label}

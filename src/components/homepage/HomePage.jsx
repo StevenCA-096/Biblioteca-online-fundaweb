@@ -46,7 +46,7 @@ const HomePage = () => {
           booksApi ? (
             booksApi.map((book) =>
               <Col lg={4} key={book.bookName} className='py-2 px-2'>
-                <Card className="py-3 px-2 shadow">
+                <Card className="py-2 px-2 shadow">
                   <Card.Img className='img-fluid' src={book.imgUrl} style={{ width: 'inherit', height: '350px' }} />
 
                   <Card.Body className="overflow-visible py-0">
@@ -57,35 +57,14 @@ const HomePage = () => {
                     </Card.Title>
                   </Card.Body>
                   <Card.Footer className='bg-transparent'>
-                    <BookReservation />
+                    <BookReservation props={book.id}/>
                   </Card.Footer>
                 </Card>
               </Col>
             )
           ) : (null)
         }
-        {books.map((book, index) => {
-          const title = book.title;
-          const author = book.author_name ? book.author_name.join(', ') : 'Unknown author';
-          const coverId = book.cover_i;
-          const coverUrl = coverId ? `https://covers.openlibrary.org/b/id/${coverId}-L.jpg` : 'No cover available';
-
-          return (
-            <Col lg={4} key={index} className='py-2 px-2'>
-              <Card className="py-3 px-2 shadow">
-                <Card.Img className='img-fluid' src={coverUrl} style={{ width: 'inherit', height: '350px' }} />
-
-                <Card.Body className="overflow-visible py-0">
-                  <Card.Title className="pb-0 pt-1 px-2 flex-col items-start text-center">
-                    <p className="text-tiny uppercase font-bold">Autor</p>
-                    <small className="text-default-500">{author}</small>
-                    <h4 className="font-bold text-large">{title}</h4>
-                  </Card.Title>
-                </Card.Body>
-              </Card>
-            </Col>
-          );
-        })}
+        
       </Row>
     </Container>
   )

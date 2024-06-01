@@ -1,65 +1,63 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import { Spinner } from '@material-tailwind/react';
+import { Spinner,Button } from '@material-tailwind/react';
+import { useQuery } from 'react-query';
+import { getCustomerLoans } from '../../services/loanService';
 
 const ReservedBooks = () => {
-  const [books, setBooks] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  let customer = JSON.parse(sessionStorage.getItem('customer'))
 
-  useEffect(() => {
-    const fetchBooks = async () => {
-      try {
-        const searchQuery = 'the lord of the rings';
-        const url = `https://openlibrary.org/search.json?q=${encodeURIComponent(searchQuery)}`;
-        const response = await axios.get(url)
-        setBooks(response.data.docs.slice(0, 2));
-        setIsLoading(false)
-      } catch (error) {
-        console.error('Error fetching data from Open Library:', error);
-      }
-    };
+  if (customer == null) {
+    window.location = '/home'
+  }
+  const { data: myLoans, isLoading: myBooksLoading, isError: myBooksError } = useQuery('myloans', () => getCustomerLoans(customer.id))
 
-    fetchBooks();
-  }, []);
-
+if (myLoans) {
+  console.log(myLoans)
+}
   return (
     <Container style={{ display: 'grid', alignItems: 'center' }}>
-      
+
       <Row>
         <Col>
           <h1 className='font-monospace text-center text-decoration-underline my-2'>Mis prestamos</h1>
         </Col>
       </Row>
 
-      {
-        isLoading ? (<Spinner className='text-center'/>) : (null)
-      }
-
       <Row>
-        {books.map((book, index) => {
-          const title = book.title;
-          const author = book.author_name ? book.author_name.join(', ') : 'Unknown author';
-          const coverId = book.cover_i;
-          const coverUrl = coverId ? `https://covers.openlibrary.org/b/id/${coverId}-L.jpg` : 'No cover available';
-
-          return (
-            <Col lg={4} key={index} className='py-2 px-3'>
-              <Card className="py-3 px-2 shadow text-center">
-                <Card.Img className='img-fluid' src={coverUrl} style={{ width: 'inherit', height: '350px' }} />
-                <Card.Title className="pb-0 pt-1 px-2 flex-col items-start">
-                  <p className="text-tiny uppercase font-bold">Autor</p>
-                  <small className="text-default-500">{author}</small>
-                  <h4 className="font-bold text-large">{title}</h4>
-                </Card.Title>
-                <Card.Body className="overflow-visible py-0">
-                  <hr />
-                </Card.Body>
-              </Card>
-            </Col>
-          );
-        })}
+        {
+          myLoans ? (
+            
+              myLoans.length == 0?(<span className='text-center display-6' >No se han reservado libros</span>):(
+                myLoans.map((loan) =>
+                  <Col lg={4} key={loan.books.bookName} className='py-2 px-2'>
+                    <Card className="py-2 px-2 shadow">
+                      <Card.Header style={{background:'none'}}>
+                        <span style={{color:'black'}}>Fecha de inicio: {new Date(loan.startDate).toLocaleString()}</span><br />
+                        <span style={{color:'black'}}>Fecha de devolucion: {new Date(loan.endDate).toLocaleString()}</span><br />
+                      </Card.Header>
+                      <Card.Img className='img-fluid' src={loan.books.imgUrl} style={{ width: 'inherit', height: '350px' }} />
+                      <Card.Body className="overflow-visible py-0">
+                        <Card.Title className="pb-0 pt-1 px-2 flex-col items-start text-center">
+                          <p className="text-tiny uppercase font-bold">{loan.books.authorName}</p>
+                          <small className="text-default-500">{loan.books.category}</small>
+                          <h4 className="font-bold text-large">{loan.books.bookName}</h4>
+                        </Card.Title>
+                      </Card.Body>
+                      <Card.Footer className='bg-transparent text-center'>
+                        <Button variant='gradient'>Modificar periodo</Button>
+                      </Card.Footer>
+                    </Card>
+                  </Col>
+                )
+              )
+          ) : 
+          (<Spinner className='text-center' />)
+        }
       </Row>
+
+      
     </Container>
   );
 };
