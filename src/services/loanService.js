@@ -7,7 +7,7 @@ export const createLoan = async(newLoan) => {
 }
 
 export const updateLoan = async(updateLoanData) => {
-    let data = (await api.patch('loan', updateLoanData)).data
+    let data = (await api.patch(`loans/update-loan-date/${parseInt(updateLoanData.id)}/${updateLoanData.newDate}`)).data
     return data;
 }
 

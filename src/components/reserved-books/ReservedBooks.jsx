@@ -4,6 +4,7 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 import { Spinner,Button } from '@material-tailwind/react';
 import { useQuery } from 'react-query';
 import { getCustomerLoans } from '../../services/loanService';
+import UpdateReservation from './actions/UpdateReservation';
 
 const ReservedBooks = () => {
   let customer = JSON.parse(sessionStorage.getItem('customer'))
@@ -46,7 +47,7 @@ if (myLoans) {
                         </Card.Title>
                       </Card.Body>
                       <Card.Footer className='bg-transparent text-center'>
-                        <Button variant='gradient'>Modificar periodo</Button>
+                        <UpdateReservation props={loan}/>
                       </Card.Footer>
                     </Card>
                   </Col>
